@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Optional
+from typing import Optional, List
 
 
 class BinarySearchTreeNode:
@@ -41,3 +41,30 @@ class BinarySearchTreeNode:
 				return None
 			else:
 				return self.right.find(search_data)
+
+	def in_order_traverse(self, node_list: List) -> None:
+		if self.left is not None:
+			self.left.in_order_traverse(node_list)
+		
+		node_list.append(self.data)
+		
+		if self.right is not None:
+			self.right.in_order_traverse(node_list)
+	
+	def pre_order_traverse(self, node_list: List) -> None:
+		node_list.append(self.data)
+		
+		if self.left is not None:
+			self.left.pre_order_traverse(node_list)
+		
+		if self.right is not None:
+			self.right.pre_order_traverse(node_list)
+	
+	def post_order_traverse(self, node_list: List) -> None:
+		if self.left is not None:
+			self.left.post_order_traverse(node_list)
+		
+		if self.right is not None:
+			self.right.post_order_traverse(node_list)
+			
+		node_list.append(self.data)

@@ -33,3 +33,18 @@ class BinaryTreeNodeTests(TestCase):
 		self.assertIsNone(self.root.find(7))
 		self.assertIsNone(self.root.find(0))
 		self.assertIsNone(self.root.find(22))
+
+	def test_in_order_traverse(self) -> None:
+		nodes = []
+		self.root.in_order_traverse(nodes)
+		self.assertEqual(nodes, [1, 2, 5, 6, 8, 9])
+
+	def test_pre_order_traverse(self) -> None:
+		nodes = []
+		self.root.pre_order_traverse(nodes)
+		self.assertEqual(nodes, [1, 2, 6, 9, 8, 5])
+	
+	def test_post_order_traverse(self) -> None:
+		nodes = []
+		self.root.post_order_traverse(nodes)
+		self.assertEqual(nodes, [5, 2, 1, 8, 6, 9])
