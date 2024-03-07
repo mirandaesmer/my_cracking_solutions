@@ -10,6 +10,30 @@ class ChapterFourTests(TestCase):
         self.unsorted_array = [5, 2, 8, 1, 6, 9]
         self.sorted_array = [1, 2, 5, 6, 8, 9]
         
+    def test_problem3(self) -> None:
+        # TEST BST:
+        #        5
+        #     2    8
+        #   1     6  9
+        bst_root = BinarySearchTreeNode(5)  # LVL 1
+        
+        bst_root.insert(2)  # LVL 2
+        bst_root.insert(8)
+        
+        bst_root.insert(1)  # LVL 3
+        bst_root.insert(6)
+        bst_root.insert(9)
+        
+        levels = self.ch4.problem3(bst_root)
+        first, second, third = levels
+        
+        self.assertEqual(first.data, 5)
+        self.assertEqual(second.data, 2)
+        self.assertEqual(second.next.data, 8)
+        self.assertEqual(third.data, 1)
+        self.assertEqual(third.next.data, 6)
+        self.assertEqual(third.next.next.data, 9)
+        
     def test_problem5(self) -> None:
         # create binary search tree with unsorted array
         bst_root = BinarySearchTreeNode(self.unsorted_array[0])
