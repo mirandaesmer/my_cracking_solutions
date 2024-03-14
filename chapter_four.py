@@ -1,10 +1,21 @@
 from typing import List
 
 from binary_search_tree_node import BinarySearchTreeNode
+from directed_graph import DirectedGraph, GraphNode
 from linked_list_node import LinkedListNode
 
 
 class ChapterFour:
+    def problem1(self, dg: DirectedGraph, a: GraphNode, b: GraphNode) -> bool:
+        # Route Between Nodes: Given a directed graph, design an algorithm to
+        # find out whether there is a route between two nodes.
+        a_to_b = dg.bfs(a, b.data)
+        b_to_a = dg.bfs(b, a.data)
+        
+        if a_to_b is None and b_to_a is None:
+            return False
+        return True
+    
     def problem2(self, arr):
         # Given a sorted (increasing order) array with unique integer elements,
         # write an algorithm to create a binary search tree with minimal height

@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from binary_search_tree_node import BinarySearchTreeNode
 from chapter_four import ChapterFour
+from directed_graph import DirectedGraph, GraphNode
 
 
 class ChapterFourTests(TestCase):
@@ -9,7 +10,52 @@ class ChapterFourTests(TestCase):
         self.ch4 = ChapterFour()
         self.unsorted_array = [5, 2, 8, 1, 6, 9]
         self.sorted_array = [1, 2, 5, 6, 8, 9]
+    
+    def test_problem1(self) -> None:
+        dg = DirectedGraph()
+        nodes = [GraphNode(i, set()) for i in range(0, 10)]
+        for n in nodes:
+            dg.add_node(n)
+            
+        # create directed graph w/ these adj map:
+        exp_adjacency_map = {
+            0: {7},     # nothing points to 0
+            1: {2, 3},
+            2: {4, 5},
+            3: {6},
+            4: {2, 7},  # (2-4 is a loop)
+            5: set(),
+            6: {8},
+            7: set(),
+            8: {3},     # (3-6-8 is a loop)
+            9: set(),   # isolated node
+        }
         
+        dg.add_connection(nodes[1], nodes[2])
+        dg.add_connection(nodes[1], nodes[3])
+        dg.add_connection(nodes[2], nodes[4])
+        dg.add_connection(nodes[2], nodes[5])
+        dg.add_connection(nodes[3], nodes[6])
+        dg.add_connection(nodes[4], nodes[7])
+        dg.add_connection(nodes[4], nodes[2])
+        dg.add_connection(nodes[6], nodes[8])
+        dg.add_connection(nodes[8], nodes[3])
+        dg.add_connection(nodes[0], nodes[7])
+        
+        self.assertEqual(dg._adjacency_map, exp_adjacency_map)
+        
+        # false cases
+        self.assertFalse(self.ch4.problem1(dg, nodes[9], nodes[2]))
+        self.assertFalse(self.ch4.problem1(dg, nodes[1], nodes[9]))
+        
+        # forwards match (a to b)
+        self.assertTrue(self.ch4.problem1(dg, nodes[1], nodes[8]))
+        self.assertTrue(self.ch4.problem1(dg, nodes[1], nodes[8]))
+        
+        # back match (b to a)
+        self.assertTrue(self.ch4.problem1(dg, nodes[4], nodes[2]))
+        self.assertTrue(self.ch4.problem1(dg, nodes[6], nodes[3]))
+
     def test_problem3(self) -> None:
         # TEST BST:
         #        5
