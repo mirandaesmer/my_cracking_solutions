@@ -42,9 +42,9 @@ class BinarySearchTreeNodeTests(TestCase):
     def test_pre_order_traverse(self) -> None:
         nodes = []
         self.root.pre_order_traverse(nodes)
-        self.assertEqual(nodes, [1, 2, 6, 9, 8, 5])
+        self.assertEqual(nodes, [5, 2, 1, 8, 6, 9])
     
     def test_post_order_traverse(self) -> None:
         nodes = []
         self.root.post_order_traverse(nodes)
-        self.assertEqual(nodes, [5, 2, 1, 8, 6, 9])
+        self.assertEqual(nodes, [1, 2, 6, 9, 8, 5])

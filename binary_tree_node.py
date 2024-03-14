@@ -27,23 +27,8 @@ class BinaryTreeNode:
                 self.left.insert(new_data)
 
     def find(self, search_data: int) -> Optional[BinaryTreeNode]:
+        # unused for now
         pass
-        # if self.data is None:
-        #     return None
-        # if self.data == search_data:
-        #     return self
-        #
-        # if search_data < self.data:
-        #     if self.left is None:
-        #         return None
-        #     else:
-        #         return self.left.find(search_data)
-        #
-        # if search_data > self.data:
-        #     if self.right is None:
-        #         return None
-        #     else:
-        #         return self.right.find(search_data)
 
     def in_order_traverse(self, node_list: List) -> None:
         if self.left is not None:

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from binary_search_tree_node import BinarySearchTreeNode
 from directed_graph import DirectedGraph, GraphNode
@@ -64,3 +64,21 @@ class ChapterFour:
         nodes = []
         root.in_order_traverse(nodes)
         return nodes == sorted(nodes)
+
+    def problem6(self, root: BinarySearchTreeNode, precessor_data: int) -> Optional[int]:
+        # Write an algorithm to find the "next" node (i.e., in-order successor)
+        # of a given node in a binary search tree. You may assume that each
+        # node has a link to its parent.
+        
+        # in this case, only returning data
+        in_order_data = []
+        root.in_order_traverse(in_order_data)
+        if not in_order_data:
+            return None
+        if precessor_data not in in_order_data:
+            return None
+        if in_order_data[-1] == precessor_data:
+            return None
+        
+        idx = in_order_data.index(precessor_data)
+        return in_order_data[idx + 1]

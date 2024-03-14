@@ -11,7 +11,6 @@ class LinkedListTests(unittest.TestCase):
             node.insert(i)
         
         for j in range(0, 10):
-            print(node, node.data, j)
             self.assertEqual(node.data, j)
             node = node.next
         self.assertIsNone(node)  # last node reached

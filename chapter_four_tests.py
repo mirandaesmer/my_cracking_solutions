@@ -104,3 +104,17 @@ class ChapterFourTests(TestCase):
         # test positive and negative cases
         self.assertTrue(self.ch4.problem5(bst_root))
         self.assertFalse(self.ch4.problem5(bad_root))
+
+    def test_problem6(self) -> None:
+        root = BinarySearchTreeNode(5)
+        root.insert(2)
+        root.insert(8)
+        root.insert(1)
+        root.insert(6)
+        root.insert(9)
+        
+        self.assertEqual(self.ch4.problem6(root, 1), 2)
+        self.assertEqual(self.ch4.problem6(root, 2), 5)
+        self.assertEqual(self.ch4.problem6(root, 5), 6)
+        self.assertEqual(self.ch4.problem6(root, 6), 8)
+        self.assertIsNone(self.ch4.problem6(root, 9))
