@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from binary_search_tree_node import BinarySearchTreeNode
+from binary_tree_node import BinaryTreeNode
 from chapter_four import ChapterFour
 from directed_graph import DirectedGraph, GraphNode
 
@@ -79,7 +80,34 @@ class ChapterFourTests(TestCase):
         self.assertEqual(third.data, 1)
         self.assertEqual(third.next.data, 6)
         self.assertEqual(third.next.next.data, 9)
+
+    def test_problem4(self) -> None:
+        r1 = BinaryTreeNode(data=0)
+        self.assertTrue(self.ch4.problem4(r1))
         
+        # add 2 on left branch
+        r1.left = BinaryTreeNode(data=1)
+        r1.left.right = BinaryTreeNode(data=2)
+        self.assertFalse(self.ch4.problem4(r1))
+        
+        # add 4 on right branch, random directions
+        r1.right = BinaryTreeNode(data=3)
+        r1.right.right = BinaryTreeNode(data=4)
+        
+        # branches are equal heights
+        r1.right.left = BinaryTreeNode(data=5)
+        self.assertTrue(self.ch4.problem4(r1))
+        
+        # off by one
+        r1.right.right.right = BinaryTreeNode(data=6)
+        self.assertTrue(self.ch4.problem4(r1))
+        
+        # not balanced anymore
+        r1.right.right.left = BinaryTreeNode(data=7)
+        r1.right.right.left.left = BinaryTreeNode(data=8)
+        r1.right.right.left.left.right = BinaryTreeNode(data=9)
+        self.assertFalse(self.ch4.problem4(r1))
+
     def test_problem5(self) -> None:
         # create binary search tree with unsorted array
         bst_root = BinarySearchTreeNode(self.unsorted_array[0])

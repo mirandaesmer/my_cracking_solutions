@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 from binary_search_tree_node import BinarySearchTreeNode
+from binary_tree_node import BinaryTreeNode
 from directed_graph import DirectedGraph, GraphNode
 from linked_list_node import LinkedListNode
 
@@ -65,6 +66,32 @@ class ChapterFour:
         root.in_order_traverse(nodes)
         return nodes == sorted(nodes)
 
+    def _get_max_depth(self, node: BinaryTreeNode, level: int) -> int:
+        if node is None:
+            return level
+        if node.left is None and node.right is None:
+            return level + 1
+        if node.right is None:
+            return self._get_max_depth(node.left, level + 1)
+        if node.left is None:
+            return self._get_max_depth(node.right, level + 1)
+        return max(
+            self._get_max_depth(node.left, level + 1),
+            self._get_max_depth(node.right, level + 1),
+        )
+
+    def problem4(self, bt_root: BinaryTreeNode) -> bool:
+        # Implement a function to check if a binary tree is balanced. For the
+        # purposes of this question, a balanced tree is defined to be a tree
+        # such that the heights of the two subtrees of any node never differ
+        # by more than one.
+        lh = self._get_max_depth(bt_root.left, 1)
+        rh = self._get_max_depth(bt_root.right, 1)
+        
+        if max(rh, lh) - min(rh, lh) > 1:
+            return False
+        return True
+    
     def problem6(self, root: BinarySearchTreeNode, precessor_data: int) -> Optional[int]:
         # Write an algorithm to find the "next" node (i.e., in-order successor)
         # of a given node in a binary search tree. You may assume that each
