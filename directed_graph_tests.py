@@ -20,7 +20,7 @@ class DirectedGraphTests(TestCase):
         self.dg.add_connection(self.nodes[6], self.nodes[8])
         self.dg.add_connection(self.nodes[8], self.nodes[3])
         self.dg.add_connection(self.nodes[0], self.nodes[7])
-
+    
     def test_add_node(self) -> None:
         dg = DirectedGraph()
         self.assertEqual(dg._node_data, set())
@@ -63,3 +63,20 @@ class DirectedGraphTests(TestCase):
         self.assertEqual(self.dg.bfs(self.nodes[1], 2), self.nodes[2])
         self.assertEqual(self.dg.bfs(self.nodes[1], 5), self.nodes[5])
         self.assertEqual(self.dg.bfs(self.nodes[1], 8), self.nodes[8])
+    
+    def test_dfs(self) -> None:
+        no_path = self.dg.dfs(self.nodes[1], self.nodes[9], [], set())
+        self.assertIsNone(no_path)
+
+        path_one = self.dg.dfs(self.nodes[1], self.nodes[1], [], set())
+        self.assertEqual(path_one, [self.nodes[1]])
+
+        path_two = self.dg.dfs(self.nodes[0], self.nodes[7], [], set())
+        self.assertTrue(len(path_two) == 2)
+        self.assertEqual(path_two, [self.nodes[0], self.nodes[7]])
+
+        # see adjacency matrix above
+        exp_path = [self.nodes[1], self.nodes[2], self.nodes[4], self.nodes[7]]
+        path_long = self.dg.dfs(self.nodes[1], self.nodes[7], [], set())
+        self.assertTrue(len(path_long) == 4)
+        self.assertEqual(path_long, exp_path)

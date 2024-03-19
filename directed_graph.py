@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, Set, Optional
+from typing import Dict, Set, Optional, List
 
 
 class GraphNode:
@@ -42,7 +42,7 @@ class DirectedGraph:
             return None
         
         nodes_already_searched = [root]
-        nodes_to_search = list(root.children)  # todo where dedupe happens
+        nodes_to_search = list(root.children)
         no_more_nodes = bool(nodes_already_searched)
         
         while no_more_nodes:
@@ -59,3 +59,22 @@ class DirectedGraph:
             nodes_to_search = next_level
             no_more_nodes = bool(next_level)
         return None
+
+    def dfs(
+            self,
+            node: GraphNode,
+            target: GraphNode,
+            path: List[GraphNode],
+            visited: Set[GraphNode],
+    ) -> List[GraphNode]:
+        # Greedy, returns first valid path, or None
+        if node == target:
+            return path + [target]
+
+        visited.add(node)
+        search_space = node.children - visited
+        
+        for adj in search_space:
+            pos_path = self.dfs(adj, target, path + [node], visited)
+            if pos_path is not None:
+                return pos_path
