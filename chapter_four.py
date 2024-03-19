@@ -17,11 +17,36 @@ class ChapterFour:
             return False
         return True
 
+    def midpt_traverse(self, arr: List[int]) -> List[int]:
+        if not arr:  # Empty case
+            return []
+        
+        arr_size = len(arr)
+        if len(arr) == 1:
+            return arr
+        
+        mid = arr_size // 2
+        
+        # pre-order traversal
+        l = arr[:mid]
+        midpt = arr[mid]
+        r = arr[mid + 1:]
+        
+        return [midpt] + self.midpt_traverse(l) + self.midpt_traverse(r)
+
     def problem2(self, sorted_arr: List[int]) -> Optional[BinarySearchTreeNode]:
         # Given a sorted (increasing order) array with unique integer elements,
         # write an algorithm to create a binary search tree with minimal height
-        # TODO rethink strategy here, divide and conquer maybe?
-        pass
+        bst_sorted_arr = self.midpt_traverse(sorted_arr)
+        
+        if not bst_sorted_arr:
+            return None
+        
+        bts_root = BinarySearchTreeNode(bst_sorted_arr[0])
+        for i in bst_sorted_arr[1:]:
+            bts_root.insert(i)
+        
+        return bts_root
 
     def problem3(self, root: BinarySearchTreeNode) -> List[LinkedListNode]:
         # Given a binary tree, design an algorithm which creates a linked list

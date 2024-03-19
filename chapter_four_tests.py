@@ -57,6 +57,45 @@ class ChapterFourTests(TestCase):
         self.assertTrue(self.ch4.problem1(dg, nodes[4], nodes[2]))
         self.assertTrue(self.ch4.problem1(dg, nodes[6], nodes[3]))
 
+    def test_problem2(self) -> None:
+        # Test recursive function
+        self.assertEqual(self.ch4.midpt_traverse([]), [])
+        self.assertEqual(self.ch4.midpt_traverse([1]), [1])
+        self.assertEqual(self.ch4.midpt_traverse([1, 2]), [2, 1])
+        self.assertEqual(self.ch4.midpt_traverse([1, 2, 3]), [2, 1, 3])
+        self.assertEqual(self.ch4.midpt_traverse(
+            list(range(1, 8))), [4, 2, 1, 3, 6, 5, 7])
+        
+        # Trivial cases
+        one_tree = self.ch4.problem2([1])
+        self.assertEqual(one_tree.data, 1)
+        self.assertIsNone(one_tree.left)
+        self.assertIsNone(one_tree.right)
+        
+        two_tree = self.ch4.problem2([1, 2])
+        self.assertEqual(two_tree.data, 2)
+        self.assertEqual(two_tree.left.data, 1)
+        self.assertIsNone(two_tree.right)
+        
+        three_tree = self.ch4.problem2([1, 2, 3])
+        self.assertEqual(two_tree.data, 2)
+        self.assertEqual(three_tree.left.data, 1)
+        self.assertEqual(three_tree.right.data, 3)
+        
+        # Complex case
+        t = self.ch4.problem2(list(range(1, 8)))
+        self.assertEqual(t.data, 4)
+        
+        # left branch
+        self.assertEqual(t.left.data, 2)
+        self.assertEqual(t.left.left.data, 1)
+        self.assertEqual(t.left.right.data, 3)
+        
+        # right branch
+        self.assertEqual(t.right.data, 6)
+        self.assertEqual(t.right.left.data, 5)
+        self.assertEqual(t.right.right.data, 7)
+        
     def test_problem3(self) -> None:
         # TEST BST:
         #        5
