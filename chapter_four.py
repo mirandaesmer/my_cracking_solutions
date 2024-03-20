@@ -154,14 +154,10 @@ class ChapterFour:
             p1, p2 = dep
             dep_graph.add_connection(proj_map[p1], proj_map[p2])
         
-        # TODO untested
-        # TODO DFS is greedy, may not work when shortcuts are encountered
-        proj_len = len(proj_list)
-        for i in range(0, proj_len):
-            for j in range(0, proj_len):
-                if i != j:
-                    possible_path = dep_graph.dfs(
-                        proj_map[i], proj_map[j], [], set())
-                    if possible_path and len(possible_path) == proj_len:
-                        return possible_path
+        # Hyp 1: Find max path from each node
+        # Res 1: fails on subdependencies
+        # Hyp 2: Find full tree starting from node
+        # Res 2: fails on isolated nodes or multiple tree cases
+        # Hyp 3: start w full problem space and narrow, base / edge cases
+        # Res 3: TODO
         return []
