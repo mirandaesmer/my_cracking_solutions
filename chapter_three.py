@@ -14,3 +14,10 @@ class ChapterThree:
         # NOTE: see MinStack class in min_stack.py
         # TODO missing tests (min_stack_tests.py)
         pass
+
+    def problem4(self) -> None:
+        # Implement a MyQueue class which implements a queue using two stacks
+        
+        # NOTE: see TwoStackQueue class in two_stack_queue.py
+        # TODO missing tests (two_stack_queue_tests.py)
+        pass
