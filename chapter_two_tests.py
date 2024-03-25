@@ -52,3 +52,17 @@ class ChapterTwoTests(TestCase):
             
         self.assertFalse(self.ch2.problem6(non_palin_root))
         self.assertTrue(self.ch2.problem6(palin_root))
+
+    def test_problem8(self) -> None:
+        root = LinkedListNode()
+        for i in range(0, 10):
+            root.insert(i)
+        
+        last_node = root
+        while last_node.next is not None:
+            last_node = last_node.next
+        
+        # create a loop from last to third node
+        third_node = root.next.next.next
+        last_node.next = third_node
+        self.assertEqual(self.ch2.problem8(root).data, third_node.data)

@@ -57,3 +57,18 @@ class ChapterTwo:
             node = node.next
         
         return data_list == data_list[::-1]
+
+    def problem8(self, root: LinkedListNode) -> LinkedListNode:
+        # Given a circular linked list, implement an algorithm that returns the
+        # node at the beginning of the loop.
+        
+        byref_map = {}
+        node = root
+        
+        while True:
+            if id(node) in byref_map:
+                return byref_map[id(node)]
+            else:
+                byref_map[id(node)] = node
+            node = node.next
+            
