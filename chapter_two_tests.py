@@ -53,6 +53,24 @@ class ChapterTwoTests(TestCase):
         self.assertFalse(self.ch2.problem6(non_palin_root))
         self.assertTrue(self.ch2.problem6(palin_root))
 
+    def test_problem7(self) -> None:
+        root_a = LinkedListNode()
+        root_b = LinkedListNode()
+        root_c = LinkedListNode()
+        
+        # Data is irrelevant here
+        for i in range(0, 10):
+            root_a.insert(i)
+            root_b.insert(i)
+            root_c.insert(i)
+        
+        # intersect (a, b), overriding B's tail
+        root_b.next.next = root_a.next.next.next
+        
+        self.assertTrue(self.ch2.problem7(root_a, root_b))
+        self.assertFalse(self.ch2.problem7(root_b, root_c))
+        self.assertFalse(self.ch2.problem7(root_a, root_c))
+
     def test_problem8(self) -> None:
         root = LinkedListNode()
         for i in range(0, 10):

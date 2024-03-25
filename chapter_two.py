@@ -58,10 +58,30 @@ class ChapterTwo:
         
         return data_list == data_list[::-1]
 
+    def problem7(self, root_a: LinkedListNode, root_b: LinkedListNode) -> bool:
+        # Given two (singly) linked lists, determine if the two lists intersect.
+        # Return the intersecting node. Note that the intersection is defined
+        # based on reference, not value.That is, if the kth node of the first
+        # linked list is the exact same node (by reference) as the jth node of
+        # the second linked list, then they are intersecting.
+        byref_map = {}
+        node_a = root_a
+        node_b = root_b
+        
+        while node_a is not None:
+            byref_map[id(node_a)] = node_a
+            node_a = node_a.next
+        
+        while node_b is not None:
+            if id(node_b) in byref_map:
+                return True
+            node_b = node_b.next
+            
+        return False
+
     def problem8(self, root: LinkedListNode) -> LinkedListNode:
         # Given a circular linked list, implement an algorithm that returns the
         # node at the beginning of the loop.
-        
         byref_map = {}
         node = root
         
