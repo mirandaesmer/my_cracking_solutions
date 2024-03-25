@@ -45,6 +45,32 @@ class ChapterTwo:
             node = node.next
             kth_back = kth_back.next
     
+    # TODO missing tests
+    def problem4(self, root: LinkedListNode, partition: int) -> LinkedListNode:
+        # Write code to partition a linked list around a value x, such that all
+        # nodes less than x come before all nodes greater than or equal to x. If
+        # x is contained within the list, the values of x only need to be after
+        # the elements less than x (see below). The partition element x can
+        # appear anywhere in the "right partition"; it does not need to appear
+        # between the left and right partitions.
+        left_partition = LinkedListNode()
+        right_partition = LinkedListNode()
+        
+        node = root
+        while node is not None:
+            if node.data < partition:
+                left_partition.insert(node.data)
+            else:
+                right_partition.insert(node.data)
+        
+        # Get last elem of left, can also be added to previous loop
+        last_left = left_partition
+        while last_left.next is not None:
+            last_left = last_left.next
+        last_left.next = right_partition
+        
+        return left_partition
+        
     def problem6(self, root: LinkedListNode) -> bool:
         # Implement a function to check if a linked list is a palindrome.
         if root is None or root.data is None:
