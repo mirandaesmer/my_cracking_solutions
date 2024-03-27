@@ -52,9 +52,41 @@ class ChapterTwoTests(TestCase):
         while node.next is not None:
             actual_arr.append(node.next.data)
             node = node.next
-
+        
         self.assertEqual(actual_arr, exp_arr)
-
+    
+    def test_problem5_reverse_order(self) -> None:
+        root_a = LinkedListNode()
+        root_a.insert(7)
+        root_a.insert(1)
+        root_a.insert(6)
+        
+        root_b = LinkedListNode()
+        root_b.insert(5)
+        root_b.insert(9)
+        root_b.insert(2)
+        
+        root_res = self.ch2.problem5(root_a, root_b, reverse_order=True)
+        self.assertEqual(root_res.data, 2)
+        self.assertEqual(root_res.next.data, 1)
+        self.assertEqual(root_res.next.next.data, 9)
+    
+    def test_problem5_forward_order(self) -> None:
+        root_a = LinkedListNode()
+        root_a.insert(6)
+        root_a.insert(1)
+        root_a.insert(7)
+        
+        root_b = LinkedListNode()
+        root_b.insert(2)
+        root_b.insert(9)
+        root_b.insert(5)
+        
+        root_res = self.ch2.problem5(root_a, root_b, reverse_order=False)
+        self.assertEqual(root_res.data, 9)
+        self.assertEqual(root_res.next.data, 1)
+        self.assertEqual(root_res.next.next.data, 2)
+        
     def test_problem6(self) -> None:
         non_palin_arr = [1, 5, 7, 7, 4, 1, 5]
         palin_arr = [1, 4, 8, 3, 8, 4, 1]

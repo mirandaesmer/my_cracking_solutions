@@ -45,7 +45,6 @@ class ChapterTwo:
             node = node.next
             kth_back = kth_back.next
     
-    # TODO missing tests
     def problem4(self, root: LinkedListNode, partition: int) -> LinkedListNode:
         # Write code to partition a linked list around a value x, such that all
         # nodes less than x come before all nodes greater than or equal to x. If
@@ -71,6 +70,59 @@ class ChapterTwo:
         last_left.next = right_partition
         
         return left_partition
+    
+    def problem5(
+            self,
+            root_a: LinkedListNode,
+            root_b: LinkedListNode,
+            reverse_order: bool = True
+    ) -> LinkedListNode():
+        # You have two numbers represented by a linked list, where each node
+        # contains a single digit.The digits are stored in reverse order, such
+        # that the 1 's digit is at the head of the list. Write a function
+        # that adds the two numbers and returns the sum as a linked list.
+        # Suppose the digits are stored in forward order. Repeat the above
+        # problem.
+        node_a = root_a
+        node_b = root_b
+        
+        carry = 0
+        sum_llist = LinkedListNode()
+        if reverse_order:
+            while not (node_a is None and node_b is None):
+                local_sum = carry
+                if node_a is not None:
+                    local_sum += node_a.data
+                    node_a = node_a.next
+                if node_b is not None:
+                    local_sum += node_b.data
+                    node_b = node_b.next
+                
+                if local_sum < 10:
+                    sum_llist.insert(local_sum)
+                else:
+                    carry = local_sum // 10
+                    sum_llist.insert(local_sum % 10)
+            
+            if carry != 0:  # remaining carry:
+                sum_llist.insert(carry)
+
+        else:  # forward requires full traversal
+            arr_a = []
+            while node_a is not None:
+                arr_a.append(str(node_a.data))
+                node_a = node_a.next
+
+            arr_b = []
+            while node_b is not None:
+                arr_b.append(str(node_b.data))
+                node_b = node_b.next
+            
+            total_sum = int(''.join(arr_a)) + int(''.join(arr_b))
+            total_sum_arr = [int(ch) for ch in str(total_sum)]
+            for dig in total_sum_arr:
+                sum_llist.insert(int(dig))
+        return sum_llist
         
     def problem6(self, root: LinkedListNode) -> bool:
         # Implement a function to check if a linked list is a palindrome.
