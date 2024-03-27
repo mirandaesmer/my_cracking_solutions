@@ -38,6 +38,23 @@ class ChapterTwoTests(TestCase):
         node = self.ch2.problem2(root, 11)
         self.assertIsNone(node)
     
+    def test_problem4(self) -> None:
+        input_arr = [3, 5, 8, 5, 10, 2, 1]
+        
+        root = LinkedListNode()
+        for i in input_arr:
+            root.insert(i)
+        result_root = self.ch2.problem4(root, 5)
+        
+        exp_arr = [3, 2, 1, 5, 8, 5, 10]
+        actual_arr = [result_root.data]
+        node = result_root
+        while node.next is not None:
+            actual_arr.append(node.next.data)
+            node = node.next
+
+        self.assertEqual(actual_arr, exp_arr)
+
     def test_problem6(self) -> None:
         non_palin_arr = [1, 5, 7, 7, 4, 1, 5]
         palin_arr = [1, 4, 8, 3, 8, 4, 1]

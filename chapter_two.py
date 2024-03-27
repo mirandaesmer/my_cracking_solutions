@@ -62,6 +62,7 @@ class ChapterTwo:
                 left_partition.insert(node.data)
             else:
                 right_partition.insert(node.data)
+            node = node.next
         
         # Get last elem of left, can also be added to previous loop
         last_left = left_partition
