@@ -6,9 +6,12 @@ class MinStack(Stack):
         super().__init__()
         self._min = None
     
-    def push(self, data: int) -> None:
-        super().push(data)
-        self._min = min(self._min, data)
+    def push(self, new_data: int) -> None:
+        super().push(new_data)
+        if self._min is None:
+            self._min = new_data
+        else:
+            self._min = min(self._min, new_data)
     
     def pop(self) -> int:
         # Amortized O(1)

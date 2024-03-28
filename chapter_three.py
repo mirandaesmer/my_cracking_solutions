@@ -10,8 +10,7 @@ class ChapterThree:
         # pop, has a function min which returns the minimum element? Push, pop
         # and min should all operate in 0(1) time.
         
-        # NOTE: see MinStack class in min_stack.py
-        # TODO missing tests (min_stack_tests.py)
+        # NOTE: see min_stack.py and min_stack_tests.py
         pass
 
     def problem3(self) -> None:
