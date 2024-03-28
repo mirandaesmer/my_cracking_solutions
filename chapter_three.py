@@ -2,8 +2,7 @@ class ChapterThree:
     def problem1(self) -> None:
         # Describe how you could use a single array to implement three stacks
         
-        # NOTE: see ThreeStack class in three_stack.py
-        # TODO missing tests (three_stack_tests.py)
+        # NOTE: see three_stack.py and three_stack_tests.py
         pass
         
     def problem2(self) -> None:
