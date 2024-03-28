@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class Stack:
     def __init__(self):
         self._stack_list = []
@@ -9,3 +12,11 @@ class Stack:
         if not self._stack_list:
             raise Exception("stack is empty")
         return self._stack_list.pop()
+
+    def peek(self) -> Optional[int]:
+        if self._stack_list:
+            return self._stack_list[-1]
+        return None
+    
+    def isEmpty(self) -> bool:
+        return bool(self._stack_list)
