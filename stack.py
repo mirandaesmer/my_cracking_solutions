@@ -18,5 +18,5 @@ class Stack:
             return self._stack_list[-1]
         return None
     
-    def isEmpty(self) -> bool:
+    def is_empty(self) -> bool:
         return bool(self._stack_list)
