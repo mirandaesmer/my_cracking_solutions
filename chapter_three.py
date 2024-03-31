@@ -30,8 +30,7 @@ class ChapterThree:
         # Implement a function popAt(int index) which performs a pop operation
         # on a specific sub-stack.
         
-        # NOTE: see MinStack class in set_of_stacks.py
-        # TODO missing tests (set_of_stacks_tests.py)
+        # NOTE: see set_of_stacks.py and set_of_stacks_tests.py
         pass
 
     def problem4(self) -> None:
@@ -62,6 +61,5 @@ class ChapterThree:
         # dequeueAny, dequeueDog, and dequeueCat. You may use the built-in
         # Linked list data structure.
         
-        # NOTE: see AnimalShelterQueue class in animal_shelter_queue.py
-        # TODO missing tests (animal_shelter_queue_tests.py)
+        # NOTE: see animal_shelter_queue.py and animal_shelter_queue_tests.py
         pass
