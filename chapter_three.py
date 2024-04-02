@@ -36,8 +36,7 @@ class ChapterThree:
     def problem4(self) -> None:
         # Implement a MyQueue class which implements a queue using two stacks
         
-        # NOTE: see TwoStackQueue class in two_stack_queue.py
-        # TODO missing tests (two_stack_queue_tests.py)
+        # NOTE: see two_stack_queue.py and two_stack_queue_tests.py
         pass
 
     def problem5(self, stack: Stack) -> Stack:
