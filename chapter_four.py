@@ -162,6 +162,36 @@ class ChapterFour:
         # Res 3: TODO
         return []
     
+    def _search_node(
+            self,
+            t1_node: BinaryTreeNode,
+            search_node: BinaryTreeNode
+    ) -> bool:
+        # Traversal can vary depending on problem details, using pre-order here
+        node = t1_node
+        if node.data is not None and node == search_node:
+            return True
+        
+        if node.left is not None:
+            return self._search_node(node.left, search_node)
+        if node.right is not None:
+            return self._search_node(node.right, search_node)
+        
+    def problem10(
+            self,
+            t1_root: BinaryTreeNode,
+            t2_root: BinaryTreeNode,
+    ) -> bool:
+        # T1 and T2 are two very large binary trees, with T1 much bigger than
+        # T2. Create an algorithm to determine if T2 is a subtree of T1. A tree
+        # T2 is a subtree of T1 if there exists a node n in T1 such that the
+        # subtree of n is identical to T2. That is, if you cut off the tree at
+        # node n, the two trees would be identical.
+        result = self._search_node(t1_root, t2_root)
+        if result is None:
+            return False
+        return True
+    
     def problem11(self):
         # You are implementing a binary tree class from scratch which, in
         # addition to insert, find, and delete, has a method getRandomNode()

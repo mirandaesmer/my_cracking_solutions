@@ -185,3 +185,20 @@ class ChapterFourTests(TestCase):
         self.assertEqual(self.ch4.problem6(root, 5), 6)
         self.assertEqual(self.ch4.problem6(root, 6), 8)
         self.assertIsNone(self.ch4.problem6(root, 9))
+
+    def test_problem10(self) -> None:
+        bt1_root = BinaryTreeNode()
+        bt2_root = BinaryTreeNode()
+        for i in range(8):
+            bt1_root.insert(i)
+        
+        # base cases
+        res = self.ch4.problem10(bt1_root, bt2_root)
+        self.assertFalse(res)
+        res = self.ch4.problem10(bt1_root, bt1_root)
+        self.assertTrue(res)
+        
+        # attach to random node
+        bt2_root = bt1_root.left.left
+        res = self.ch4.problem10(bt1_root, bt2_root)
+        self.assertTrue(res)
