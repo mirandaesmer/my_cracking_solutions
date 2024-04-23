@@ -69,3 +69,27 @@ class BinaryTreeNode:
             self.right.post_order_traverse(node_list)
             
         node_list.append(self.data)
+        
+    def get_path_to_node(
+            self,
+            node: BinaryTreeNode,
+            target: BinaryTreeNode,
+    ) -> Optional[List[BinaryTreeNode]]:
+        # Base cases
+        if not node:
+            return []
+        if node == target:
+            return [node]
+        
+        # Will only return if node is found
+        path = self.get_path_to_node(node.left, target)
+        if path:
+            return [node] + path
+        
+        # Right branch
+        path = self.get_path_to_node(node.right, target)
+        if path:
+            return [node] + path
+        
+        # False on default
+        return []

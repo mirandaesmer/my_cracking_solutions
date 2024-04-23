@@ -51,3 +51,15 @@ class BinaryTreeNodeTests(TestCase):
         result = self.root.find(24)
         self.assertIsNotNone(result)
         self.assertEqual(result.data, 24)
+
+    def test_get_path_to_node(self):
+        # target node is 24:
+        target_node = self.root.right.right
+        
+        path = self.root.get_path_to_node(
+            self.root,
+            target_node,
+        )
+        
+        path_data = [p.data for p in path]
+        self.assertEqual(path_data, [1, 12, 14])
