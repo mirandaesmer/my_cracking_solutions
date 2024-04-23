@@ -162,6 +162,30 @@ class ChapterFour:
         # Res 3: TODO
         return []
     
+    def problem8(
+            self,
+            root: BinaryTreeNode,
+            node_a: BinaryTreeNode,
+            node_b: BinaryTreeNode,
+    ) -> Optional[BinaryTreeNode]:
+        # Design an algorithm and write code to find the first common ancestor
+        # of two nodes in a binary tree. Avoid storing additional nodes in a
+        # data structure. NOTE: This is not necessarily a binary search tree.
+        
+        # NOTE: Does not avoid storing additional nodes
+        root_to_a = root.get_path_to_node(root, node_a)
+        root_to_b = root.get_path_to_node(root, node_b)
+        
+        if not root_to_a or not root_to_b:
+            return None
+        
+        # If there are paths, there must be at least 1 shared
+        ancestor = root
+        for i in range(min(len(root_to_a), len(root_to_b))):
+            if root_to_a[i] != root_to_b[i]:
+                return ancestor
+            ancestor = root_to_a[i]
+    
     def _search_node(
             self,
             t1_node: BinaryTreeNode,

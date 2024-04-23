@@ -186,6 +186,26 @@ class ChapterFourTests(TestCase):
         self.assertEqual(self.ch4.problem6(root, 6), 8)
         self.assertIsNone(self.ch4.problem6(root, 9))
 
+    def test_problem8(self) -> None:
+        self.root = BinaryTreeNode(1)
+        
+        self.root.insert(11)
+        self.root.insert(12)
+        
+        self.root.insert(21)
+        self.root.insert(22)
+        self.root.insert(23)
+        self.root.insert(24)
+        
+        node_a = self.root.left.right  # 22
+        node_b = self.root.left.left  # 21
+        
+        exp_ancestor = self.root.left  # 11
+        act_ancestor = self.ch4.problem8(self.root, node_a, node_b)
+        
+        self.assertEqual(act_ancestor.data, exp_ancestor.data)
+        self.assertEqual(act_ancestor, exp_ancestor)
+
     def test_problem10(self) -> None:
         bt1_root = BinaryTreeNode()
         bt2_root = BinaryTreeNode()
