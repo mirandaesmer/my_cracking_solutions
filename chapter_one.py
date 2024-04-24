@@ -3,8 +3,9 @@ class ChapterOne:
         # Implement an algorithm to determine if a string has all unique
         # characters. What if you cannot use additional data structures?
         
-        # Can be done with a hashmap, no additional DS constraint
-        string = ''.join(sorted([ch for ch in string]))  # or in-place sort
+        # Complexity: basic hashmap approach is O( n ), Using an inplace sort
+        # requires no additional space but will be O( n logn )
+        string = ''.join(sorted([ch for ch in string]))
         
         for i in range(len(string) - 1):
             if string[i] == string[i + 1]:
@@ -15,7 +16,7 @@ class ChapterOne:
         # Given two strings,write a method to decide if one is a permutation of
         # the other.
         
-        # Complexity is O( 2n + 2m ) where n is len(string_a) and m is
+        # Complexity: O( 2n + 2m ) where n is len(string_a) and m is
         # len(string_b).
         map_a = {}
         map_b = {}
