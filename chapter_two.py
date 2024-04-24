@@ -6,6 +6,8 @@ from linked_list_node import LinkedListNode
 class ChapterTwo:
     def problem1(self, root: LinkedListNode) -> Optional[LinkedListNode]:
         # Write code to remove duplicates from an unsorted linked list.
+        
+        # Complexity: O( n ), dedupe operation is a constant time operation.
         if root is None or root.data is None:
             return None
         
@@ -29,6 +31,8 @@ class ChapterTwo:
     ) -> Optional[LinkedListNode]:
         # Implement an algorithm to find the kth to last element of a singly
         # linked list.
+        
+        # Complexity: O( 2n ) at worst case
         if root is None or root.data is None:
             return None
         
@@ -126,6 +130,8 @@ class ChapterTwo:
         
     def problem6(self, root: LinkedListNode) -> bool:
         # Implement a function to check if a linked list is a palindrome.
+        
+        # Complexity: O( 2n ), traversal and comparison are both O( n ).
         if root is None or root.data is None:
             return False
         
