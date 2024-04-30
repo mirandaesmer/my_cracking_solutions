@@ -22,3 +22,24 @@ class ChapterOneTests(TestCase):
         self.assertFalse(
             self.ch1.problem2("abcdxe", "ebdacr")
         )
+
+    def test_problem3(self):
+        original = [ch for ch in  " ab ab  ab"]
+        expected = [ch for ch in "%20ab%20ab%20%20ab"]
+        
+        self.assertEqual(self.ch1.problem3(original), expected)
+
+    def test_problem4(self):
+        self.assertTrue(
+            self.ch1.problem4("TactCoa")
+        )
+        self.assertTrue(
+            self.ch1.problem4("aaaabbb")
+        )
+        self.assertFalse(
+            self.ch1.problem4("12312323")
+        )
+        self.assertFalse(
+            self.ch1.problem4("qwerty")
+        )
+    

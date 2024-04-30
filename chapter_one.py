@@ -64,7 +64,7 @@ class ChapterOne:
 
         # Complexity: O( 2n ) here, can be improved to O( n )
         char_count_parity = {}  # True if odd, False if even or 0
-        for ch in string:
+        for ch in string.lower():
             if ch not in char_count_parity:
                 char_count_parity[ch] = True
             elif char_count_parity[ch]:
