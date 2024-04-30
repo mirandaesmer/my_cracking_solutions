@@ -55,3 +55,23 @@ class ChapterOne:
             else:
                 url_arr.append(ch)
         return url_arr
+
+    def problem4(self, string: str) -> bool:
+        # Given a string, write a function to check if it is a permutation of
+        # a palindrome. A palindrome is a word or phrase that is the same
+        # forwards and backwards. A permutation is a rearrangement of letters.
+        # The palindrome does not need to be limited to just dictionary words.
+
+        # Complexity: O( 2n ) here, can be improved to O( n )
+        char_count_parity = {}  # True if odd, False if even or 0
+        for ch in string:
+            if ch not in char_count_parity:
+                char_count_parity[ch] = True
+            elif char_count_parity[ch]:
+                char_count_parity[ch] = False
+            elif not char_count_parity[ch]:
+                char_count_parity[ch] = True
+
+        # If there are more than 1 odd char repetition, it's not a palindrome.
+        only_odds = len([b for b in char_count_parity.values() if b])
+        return only_odds < 2
