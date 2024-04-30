@@ -75,3 +75,29 @@ class ChapterOne:
         # If there are more than 1 odd char repetition, it's not a palindrome.
         only_odds = len([b for b in char_count_parity.values() if b])
         return only_odds < 2
+
+    def problem6(self, string: str) -> str:
+        # Implement a method to perform basic string compression using the
+        # counts of repeated characters. For example, the string aabcccccaaa
+        # would become a2b1c5a3. If the "compressed" string would not become
+        # smaller than the original string, your method should return the
+        # original string. You can assume the string has only uppercase and
+        # lowercase letters (a - z).
+
+        # Complexity: O(n)
+        # Assuming case does matter, string is non-empty
+        compressed_str = ''
+        starting_char = string[0]
+        char_count = 1
+        string_len = len(string)
+        for i in range(string_len):
+            if string[i] == starting_char:
+                char_count += 1
+            else:
+                compressed_str += starting_char + str(char_count)
+                starting_char = string[i]
+                char_count = 1
+
+        if len(compressed_str) < string_len:
+            return compressed_str
+        return string
