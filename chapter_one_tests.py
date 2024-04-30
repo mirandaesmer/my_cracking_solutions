@@ -43,3 +43,12 @@ class ChapterOneTests(TestCase):
             self.ch1.problem4("qwerty")
         )
     
+    def test_problem6(self):
+        self.assertEqual( # no compression necessary
+            self.ch1.problem6('abcdef'),
+            'abcdef'
+        )
+        self.assertEqual(
+            self.ch1.problem6('aabcccccaaa'),
+            'a2b1c5a3'
+        )

@@ -90,13 +90,16 @@ class ChapterOne:
         starting_char = string[0]
         char_count = 1
         string_len = len(string)
-        for i in range(string_len):
+        for i in range(1, string_len):
             if string[i] == starting_char:
                 char_count += 1
             else:
                 compressed_str += starting_char + str(char_count)
                 starting_char = string[i]
                 char_count = 1
+
+        # Last chars are not counted at end of loop
+        compressed_str += starting_char + str(char_count)
 
         if len(compressed_str) < string_len:
             return compressed_str
