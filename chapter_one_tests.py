@@ -52,3 +52,10 @@ class ChapterOneTests(TestCase):
             self.ch1.problem6('aabcccccaaa'),
             'a2b1c5a3'
         )
+        
+    def test_problem9(self):
+        self.assertTrue(self.ch1.problem9('waterbottle', 'erbottlewat'))
+        self.assertTrue(self.ch1.problem9('water', 'terwa'))
+        
+        self.assertFalse(self.ch1.problem9('abcde', 'abdce'))
+        self.assertFalse(self.ch1.problem9('1234', '4321'))

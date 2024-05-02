@@ -104,3 +104,12 @@ class ChapterOne:
         if len(compressed_str) < string_len:
             return compressed_str
         return string
+    
+    def problem9(self, s1: str, s2: str) -> bool:
+        # Assume you have a method isSubstring which checks if one word is a
+        # substring of another. Given two strings, sl and s2, write code to
+        # check if s2 is a rotation of sl using only one call to isSubstring.
+        
+        # In python 'isSubstring' is done with the 'in' keyword
+        # Complexity: O( 2n ) in theory, here O ( kn ) where k is constant
+        return s2 in (s1 + s1)
