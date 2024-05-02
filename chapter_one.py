@@ -105,6 +105,28 @@ class ChapterOne:
             return compressed_str
         return string
     
+    def problem8(self, matrix: List[List[int]]) -> List[List[int]]:
+        # Write an algorithm such that if an element in an MxN matrix is 0,
+        # its entire row and column are set to 0.
+        
+        # Complexity: O( 2MN ) for an MxN matrix
+        row_cnt = len(matrix)
+        col_cnt = len(matrix[0])
+        row_zeroes = set()
+        col_zeroes = set()
+        
+        for row in range(row_cnt):
+            for col in range(col_cnt):
+                if matrix[row][col] == 0:
+                    row_zeroes.add(row)
+                    col_zeroes.add(col)
+        
+        for row in range(row_cnt):
+            for col in range(col_cnt):
+                if row in row_zeroes or col in col_zeroes:
+                    matrix[row][col] = 0
+        return matrix
+
     def problem9(self, s1: str, s2: str) -> bool:
         # Assume you have a method isSubstring which checks if one word is a
         # substring of another. Given two strings, sl and s2, write code to
