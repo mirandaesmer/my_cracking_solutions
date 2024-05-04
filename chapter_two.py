@@ -167,6 +167,8 @@ class ChapterTwo:
     def problem8(self, root: LinkedListNode) -> LinkedListNode:
         # Given a circular linked list, implement an algorithm that returns the
         # node at the beginning of the loop.
+        
+        # Complexity: O( n ) best case, worst case is never more than O( n^2 )
         byref_map = {}
         node = root
         
