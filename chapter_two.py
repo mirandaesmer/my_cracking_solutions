@@ -149,6 +149,9 @@ class ChapterTwo:
         # based on reference, not value.That is, if the kth node of the first
         # linked list is the exact same node (by reference) as the jth node of
         # the second linked list, then they are intersecting.
+        
+        # Complexity: O( n + m ) at worst case where n and m are the lengths of
+        # the linked lists.
         byref_map = {}
         node_a = root_a
         node_b = root_b
