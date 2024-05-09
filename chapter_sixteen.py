@@ -75,3 +75,25 @@ class ChapterSixteen:
                     return 0
                 min_diff = min(min_diff, diff)
         return min_diff
+
+    def problem16(self, arr: List[int]) -> Tuple[int, int]:
+        # Given an array of integers, write a method to find indices m and n
+        # such that if you sorted elements m through n, the entire array would
+        # be sorted. Minimize n - m (that is, find the smallest such sequence).
+        
+        # Complexity: Average case is O( k - (n + k - m) ) where k is the array
+        # length, n and m are the indices as described. k - m is needed since a
+        # reverse traversal is used. Worst case is a sorted array, O( k )
+        n = 0
+        m = arr_len = len(arr)
+        
+        for i in range(arr_len - 1):
+            if arr[i] > arr[i + 1]:
+                n = i + 1
+                break
+        
+        for j in range(arr_len - 1, 1, -1):
+            if arr[j] < arr[j - 1]:
+                m = j
+                break
+        return n, m
