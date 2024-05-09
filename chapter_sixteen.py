@@ -60,3 +60,18 @@ class ChapterSixteen:
             if game[i][0] == game[i][1] == game[i][2]:
                 return game[i][0]
         return None
+
+    def problem6(self, a: List[int], b: List[int]) -> int:
+        # Given two arrays of integers, compute the pair of values (one value
+        # in each array) with the smallest (non-negative) difference. Return the
+        # difference.
+        
+        # Complexity: O ( nm ) where n and m are the lengths of the 2 lists
+        min_diff = float('inf')  # python specific MAX-INT
+        for i in range(len(a)):
+            for j in range(len(b)):
+                diff = max(a[i], b[j]) - min(a[i], b[j])
+                if diff == 0:
+                    return 0
+                min_diff = min(min_diff, diff)
+        return min_diff
