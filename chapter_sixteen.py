@@ -18,6 +18,24 @@ class ChapterSixteen:
                 num_b -= 1
         return num_a, num_b
     
+    def problem2(self, word: str, book: str) -> int:
+        # Design a method to find the frequency of occurrences of any given word
+        # in a book. What if we were running this algorithm multiple times?
+        
+        # Complexity: O( n * k ) where n is word length, k is the amount of
+        # occurrences of the first letter of the target word in the book. k can
+        # be reduced to a constant if slicing is not used.
+        occurrences = 0
+        word_len = len(word)
+        book_len = len(book)
+        last_char_to_read = book_len - word_len
+        
+        for i in range(0, last_char_to_read):
+            if book[i] == word[0]:  # limits slicing a bit, can be repeated
+                if book[i: i + word_len] == word:
+                    occurrences += 1
+        return occurrences
+
     def problem4(self, game: List[List[str]]) -> Optional[str]:
         # Design an algorithm to figure out if someone has won a game of
         # tic-tac-toe.
