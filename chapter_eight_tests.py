@@ -6,7 +6,13 @@ from chapter_eight import ChapterEight
 class ChapterEightTests(TestCase):
     def setUp(self):
         self.ch8 = ChapterEight()
-        
+    
+    def test_problem_1(self):
+        self.assertEqual(self.ch8.problem1(1), 1)
+        self.assertEqual(self.ch8.problem1(2), 2)
+        self.assertEqual(self.ch8.problem1(3), 4)
+        self.assertEqual(self.ch8.problem1(10), 274)
+    
     def test_problem_4(self):
         res = self.ch8.problem4({1, 2, 3, 4})
         expected = [

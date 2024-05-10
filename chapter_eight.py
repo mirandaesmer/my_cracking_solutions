@@ -1,7 +1,29 @@
-from typing import Set, List
+from typing import Set, List, Dict
 
 
 class ChapterEight:
+    def _memo_step_count(self, num: int, memo: Dict[int, int]) -> int:
+        if num == 0:
+            return 1
+        if num <= 0:
+            return 0
+        if num in memo:
+            return memo[num]
+        
+        ways = 0
+        ways += self._memo_step_count(num - 3, memo)
+        ways += self._memo_step_count(num - 2, memo)
+        ways += self._memo_step_count(num - 1, memo)
+        memo[num] = ways
+        return ways
+    
+    def problem1(self, n: int) -> int:
+        # A child is running up a staircase with n steps and can hop either 1
+        # step, 2 steps, or 3 steps at a time. Implement a method to count how
+        # many possible ways the child can run up the stairs.
+        ways_map = {0: 1, 1: 1}  # trivial cases
+        return self._memo_step_count(n, ways_map)
+    
     def problem4(self, elements: Set[int]) -> List[Set[int]]:
         # Write a method to return all subsets of a set.
         
