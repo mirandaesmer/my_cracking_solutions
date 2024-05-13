@@ -76,6 +76,39 @@ class ChapterSixteen:
                 min_diff = min(min_diff, diff)
         return min_diff
 
+    def _alt_subtraction(self, num_a: int, num_b: int) -> int:
+        for _ in range(num_b):
+            num_a += -1
+        return num_a
+
+    def _alt_multiplication(self, num_a: int, num_b: int) -> int:
+        for _ in range(num_b):
+            num_a += num_a
+        return num_a
+    
+    def _alt_division(self, num_a: int, num_b: int) -> int:
+        # Only integer (floor) division
+        i = 0
+        while i <= num_a:
+            i += num_b
+        return i
+    
+    def problem9(self, num_a: int, num_b: int, operation: str) -> Optional[int]:
+        # Write methods to implement the multiply, subtract, and divide
+        # operations for integers. The results of all of these are integers.
+        # Use only the add operator.
+        
+        # Complexity: O ( m ) where m is the second operand for subtraction and
+        # multiplication. For the division operation, the complexity depends on
+        # the result: O( n / m )
+        if operation == '-':
+            return self._alt_subtraction(num_a, num_b)
+        if operation == '*':
+            return self._alt_multiplication(num_a, num_b)
+        if operation == '/':
+            return self._alt_division(num_a, num_b)
+        return None
+
     def problem16(self, arr: List[int]) -> Tuple[int, int]:
         # Given an array of integers, write a method to find indices m and n
         # such that if you sorted elements m through n, the entire array would
