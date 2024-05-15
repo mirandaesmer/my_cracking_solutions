@@ -1,4 +1,6 @@
-from typing import Set, List, Dict
+from typing import Set, List, Dict, Tuple
+
+from image_array import ImageArray
 
 
 class ChapterEight:
@@ -71,3 +73,41 @@ class ChapterEight:
         if num_a == 0 or num_b == 0:
             return 0
         return self._rec_multiply(num_a, num_b, 0)
+    
+    def problem10(
+            self,
+            arr: List[List[int]],
+            point: Tuple[int, int],
+            new_color: int,
+    ) -> List[List[int]]:
+        # Implement the "paint fill" function that one might see on many image
+        # editing programs. That is, given a screen (represented by a
+        # two-dimensional array of colors), a point, and a new color, fill in
+        # the surrounding area until the color changes from the original color.
+        
+        # Complexity: O ( 9 * n * m ) where n and m are the dimensions of the
+        # image array. This is because in the worst case every pixel will be
+        # painted. See class ImageArray in image_array.py.
+        im = ImageArray(arr)
+        selection_color: int = arr[point[0]][point[1]]
+        next_points: Set[Tuple[int, int]] = {point}
+        
+        while next_points:
+            curr_points: Set[Tuple[int, int]] = next_points.copy()
+            next_points: Set[Tuple[int, int]] = set([])
+            
+            for curr_pt in curr_points:
+                top = im.get_top(curr_pt)
+                bottom = im.get_bottom(curr_pt)
+                left = im.get_left(curr_pt)
+                right = im.get_right(curr_pt)
+                
+                # NOTE: constant time, 4 directions
+                for pt in [top, bottom, left, right]:
+                    if im.get_point(pt) == selection_color:
+                        next_points.add(pt)
+                
+                # change color of visited point
+                arr[curr_pt[0]][curr_pt[1]] = new_color
+        
+        return im.image_array
