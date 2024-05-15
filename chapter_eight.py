@@ -74,6 +74,35 @@ class ChapterEight:
             return 0
         return self._rec_multiply(num_a, num_b, 0)
     
+    def _rec_perms(
+            self,
+            curr_chars: List[str],
+            rem_chars: List[str],
+            all_perms: List[str] = [],
+    ) -> None:
+        if len(rem_chars) == 0:
+            all_perms.append(''.join(curr_chars))
+            return
+        
+        for i in range(len(rem_chars)):
+            curr_copy = curr_chars.copy()
+            curr_copy.append(rem_chars[i])
+            rem_copy = rem_chars.copy()
+            del rem_copy[i]
+            
+            self._rec_perms(curr_copy, rem_copy, all_perms)
+    
+    def problem8(self, string: str) -> List[str]:
+        # Write a method to compute all permutations of a string of unique
+        # characters.
+        
+        # Complexity is O ( n! ) where n is the len of string.
+        # TODO still untested
+        perms = []
+        char_arr = [ch for ch in string]
+        self._rec_perms([], char_arr, perms)
+        return perms
+    
     def problem10(
             self,
             arr: List[List[int]],
