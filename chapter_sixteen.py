@@ -130,3 +130,76 @@ class ChapterSixteen:
                 m = j
                 break
         return n, m
+
+    def _contains_operator(self, exp: str) -> bool:
+        if '*' in exp or '/' in exp or '+' in exp or '-' in exp:
+            return True
+        return False
+    
+    def _apply_operator_by_index(self, expr: str, idx: int, op: str) -> str:
+        # Performs operation in place
+        next_idx = idx + 1
+        prev_idx = idx - 1
+        while prev_idx != 0 or expr[prev_idx] in ['*', '/', '+', '-']:
+            prev_idx -= 1
+        while next_idx != len(expr) - 1 or expr[next_idx] in ['*', '/', '+', '-']:
+            next_idx += 1
+        
+        # tokenize
+        prefix = expr[0: prev_idx]
+        int_a = int(expr[prev_idx: idx])
+        int_b = int(expr[idx: next_idx])
+        suffix = expr[next_idx:]
+        
+        # apply operation and re-add to string
+        result = ''
+        if op == '*':
+            result = str(int_a * int_b)
+        elif op == '/':
+            result = str(int_a / int_b)
+        elif op == '+':
+            result = str(int_a + int_b)
+        elif op == '-':
+            result = str(int_a - int_b)
+        return prefix + result + suffix
+    
+    def problem26(self, expression: str) -> float:
+        # Given an arithmetic equation consisting of positive integers:
+        # +, -, * and / (no parentheses), compute the result.
+        
+        # TODO untested
+        # Assuming everything is correctly formatted
+        while self._contains_operator(expression):
+            
+            # order of operations, one operator per iteration
+            if '*' in expression and '/' in expression:
+                mul_idx = expression.index('*')
+                div_idx = expression.index('/')
+                if mul_idx < div_idx:
+                    self._apply_operator_by_index(expression, mul_idx, '*')
+                else:
+                    self._apply_operator_by_index(expression, '/')
+                
+            elif '*' in expression:
+                mul_idx = expression.index('*')
+                self._apply_operator_by_index(expression, mul_idx, '*')
+            elif '/' in expression:
+                div_idx = expression.index('/')
+                self._apply_operator_by_index(expression, div_idx, '/')
+            
+            elif '+' in expression and '-' in expression:
+                add_idx = expression.index('+')
+                sub_idx = expression.index('-')
+                if add_idx < sub_idx:
+                    self._apply_operator_by_index(expression, add_idx, '+')
+                else:
+                    self._apply_operator_by_index(expression, sub_idx, '-')
+
+            elif '+' in expression:
+                add_idx = expression.index('+')
+                self._apply_operator_by_index(expression, add_idx, '+')
+            elif '-' in expression:
+                sub_idx = expression.index('-')
+                self._apply_operator_by_index(expression, sub_idx, '-')
+
+        return int(expression)
