@@ -6,6 +6,7 @@ class ChapterThree:
         # Describe how you could use a single array to implement three stacks
         
         # NOTE: see three_stack.py and three_stack_tests.py
+        # Complexity of push_on_stack() and pop_from_stack(): O( 1 )
         pass
         
     def problem2(self) -> None:
@@ -14,13 +15,17 @@ class ChapterThree:
         # and min should all operate in 0(1) time.
         
         # NOTE: see min_stack.py and min_stack_tests.py
+        # Complexity of min(): O( 1 )
+        # Complexity of push(): O( 2 )
+        # Complexity of pop(): amortized O( 1 ), O( n ) in the worst case, when
+        # min is popped.
         pass
 
     def problem3(self) -> None:
         # Imagine a (literal) stack of plates. If the stack gets too high, it
         # might topple. Therefore, in real life, we would likely start a new
         # stack when the previous stack exceeds some threshold. Implement a
-        # data structure SetOfStacks that mimics this. SetO-fStacks should be
+        # data structure SetOfStacks that mimics this. SetOfStacks should be
         # composed of several stacks and should create a new stack once the
         # previous one exceeds capacity. SetOfStacks. push() and SetOfStacks.
         # pop() should behave identically to a single stack (that is, pop()
@@ -31,6 +36,8 @@ class ChapterThree:
         # on a specific sub-stack.
         
         # NOTE: see set_of_stacks.py and set_of_stacks_tests.py
+        # Complexity: pop() and pop_at() are O( 1 ), push() is amortized O( 1 )
+        # due to pythons append()
         pass
 
     def problem4(self) -> None:
