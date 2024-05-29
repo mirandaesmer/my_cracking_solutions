@@ -56,6 +56,8 @@ class ChapterTwo:
         # the elements less than x (see below). The partition element x can
         # appear anywhere in the "right partition"; it does not need to appear
         # between the left and right partitions.
+        
+        # Complexity: O ( 2n ) where n is the length of the LinkedList
         left_partition = LinkedListNode()
         right_partition = LinkedListNode()
         
@@ -87,6 +89,10 @@ class ChapterTwo:
         # that adds the two numbers and returns the sum as a linked list.
         # Suppose the digits are stored in forward order. Repeat the above
         # problem.
+        
+        # Complexity (reverse): O( i + j )
+        # Complexity (forward): O( 3(i + j) ), requires additional traversal
+        # where i and j are the amount of digits stored in the linked list.
         node_a = root_a
         node_b = root_b
         
