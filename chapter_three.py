@@ -44,6 +44,9 @@ class ChapterThree:
         # Implement a MyQueue class which implements a queue using two stacks
         
         # NOTE: see two_stack_queue.py and two_stack_queue_tests.py
+        # Complexity: push() is amortized O( 1 )
+        # Complexity: pop() is O( 2n ) operation because stacks must be flipped
+        # back after each pop
         pass
 
     def problem5(self, stack: Stack) -> Stack:
@@ -68,4 +71,7 @@ class ChapterThree:
         # Linked list data structure.
         
         # NOTE: see animal_shelter_queue.py and animal_shelter_queue_tests.py
+        # Complexity: all dequeue functions are O ( 1 )
+        # Complexity: enqueue() is O( n ) since it requires traversing entire
+        # linked list
         pass
