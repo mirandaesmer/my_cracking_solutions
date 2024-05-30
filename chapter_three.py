@@ -49,16 +49,6 @@ class ChapterThree:
         # back after each pop
         pass
 
-    def problem5(self, stack: Stack) -> Stack:
-        # Write a program to sort a stack such that the smallest items are on
-        # the top. You can use an additional temporary stack, but you may not
-        # copy the elements into any other data structure (such as an array).
-        # The stack supports the following operations: push, pop, peek, and
-        # isEmpty.
-        
-        # TODO rethink strategy
-        return stack
-
     def problem6(self):
         # An animal shelter, which holds only dogs and cats, operates on a
         # strictly "first in, first out" basis. People must adopt either the
