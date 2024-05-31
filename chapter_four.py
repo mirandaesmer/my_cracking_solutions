@@ -139,32 +139,6 @@ class ChapterFour:
         idx = in_order_data.index(precessor_data)
         return in_order_data[idx + 1]
     
-    def problem7(
-            self,
-            proj_list: List[int],
-            dep_list: List[List[int]],
-    ) -> List[GraphNode]:
-        # You are given a list of projects and a list of dependencies (which is
-        # a list of pairs of projects, where the second project is dependent on
-        # the first project). All of a project's dependencies must be built
-        # before the project is. Find a build order that will allow the projects
-        # to be built. If there is no valid build order, return an error.
-        proj_map = {p: GraphNode(p, set()) for p in proj_list}
-        dep_graph = DirectedGraph()
-        _ = [dep_graph.add_node(proj_map[k]) for k in proj_map.keys()]
-        
-        for dep in dep_list:
-            p1, p2 = dep
-            dep_graph.add_connection(proj_map[p1], proj_map[p2])
-        
-        # Hyp 1: Find max path from each node
-        # Res 1: fails on subdependencies
-        # Hyp 2: Find full tree starting from node
-        # Res 2: fails on isolated nodes or multiple tree cases
-        # Hyp 3: start w full problem space and narrow, base / edge cases
-        # Res 3: TODO
-        return []
-    
     def problem8(
             self,
             root: BinaryTreeNode,
