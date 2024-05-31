@@ -37,6 +37,9 @@ class ChapterFour:
     def problem2(self, sorted_arr: List[int]) -> Optional[BinarySearchTreeNode]:
         # Given a sorted (increasing order) array with unique integer elements,
         # write an algorithm to create a binary search tree with minimal height
+        
+        # Complexity: O( n^2 ) since slicing in python is O( k ) where k is the
+        # size of the slice.
         bst_sorted_arr = self.midpt_traverse(sorted_arr)
         
         if not bst_sorted_arr:
