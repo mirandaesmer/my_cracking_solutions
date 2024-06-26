@@ -76,6 +76,56 @@ class ChapterOne:
         only_odds = len([b for b in char_count_parity.values() if b])
         return only_odds < 2
 
+    def _check_for_replace(self, str_a: str, str_b: str, len_both: int) -> bool:
+        outlier = None
+        for i in range(len_both):
+            if str_a[i] != str_b[i] and outlier is None:
+                outlier = i
+            elif str_a[i] != str_b[i]:  # outlier not none, more than one diff
+                return False
+        return True
+    
+    def _has_one_outlier_char(self, str_a: str, str_b: str) -> bool:
+        charmap = {}
+        for ch in str_a:
+            if ch in charmap:
+                charmap[ch] += 1
+            else:
+                charmap[ch] = 1
+        
+        for ch in str_b:
+            if ch in charmap:
+                charmap[ch] -= 1
+            else:
+                return False  # extra char has to be in larger one
+        
+        # can only be one
+        outliers = [k for k, v in charmap.items() if v != 0]
+        if len(outliers) > 1:
+            return False
+        return True
+        
+    def problem5(self, str_a: str, str_b: str) -> bool:
+        # There are three types of edits that can be performed on strings:
+        # insert a character, remove a character, or replace a character. Given
+        # two strings, write a function to check if they are one edit (or zero
+        # edits) away.
+        
+        # Complexity: at worst case O ( 2 (N+M) ) when inserted / removed char
+        # at the end of the string
+        len_a = len(str_a)
+        len_b = len(str_b)
+        
+        if str_a == str_b:
+            return True
+        if max(len_a, len_b) - max(len_a, len_b) >= 2:
+            return False
+        if len_a == len_b:
+            return self._check_for_replace(str_a, str_b, len_a)
+        
+        max_str, min_str = (str_a, str_b) if len_a > len_b else (str_b, str_a)
+        return self._has_one_outlier_char(max_str, min_str)
+
     def problem6(self, string: str) -> str:
         # Implement a method to perform basic string compression using the
         # counts of repeated characters. For example, the string aabcccccaaa
