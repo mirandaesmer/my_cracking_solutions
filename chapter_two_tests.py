@@ -38,6 +38,19 @@ class ChapterTwoTests(TestCase):
         node = self.ch2.problem2(root, 11)
         self.assertIsNone(node)
     
+    def test_problem3(self):
+        root = LinkedListNode()
+        
+        arr = [1, 2, 3, 4, 5]
+        for i in arr:
+            root.insert(i)
+        mid_node = root.next.next  # select mid 3 node
+        self.ch2.problem3(mid_node)
+        self.assertEqual(root.data, 1)
+        self.assertEqual(root.next.data, 2)
+        self.assertEqual(root.next.next.data, 4)
+        self.assertEqual(root.next.next.next.data, 5)
+    
     def test_problem4(self) -> None:
         input_arr = [3, 5, 8, 5, 10, 2, 1]
         

@@ -49,6 +49,22 @@ class ChapterTwo:
             node = node.next
             kth_back = kth_back.next
     
+    def problem3(self, middle_node: LinkedListNode) -> None:
+        # Implement an algorithm to delete a node in the middle (i.e., any node
+        # but the first and last node, not necessarily the exact middle) of a
+        # singly linked list, given only access to that node.
+        
+        # Complexity: O(1) constant time no matter which case
+        
+        # NOTE: solution only works when middle_node is not last node
+        if middle_node.next is None:
+            return
+        
+        # Next node is deleted by GC, no more references to it
+        middle_node.data = middle_node.next.data
+        middle_node.next = middle_node.next.next
+        return
+    
     def problem4(self, root: LinkedListNode, partition: int) -> LinkedListNode:
         # Write code to partition a linked list around a value x, such that all
         # nodes less than x come before all nodes greater than or equal to x. If
