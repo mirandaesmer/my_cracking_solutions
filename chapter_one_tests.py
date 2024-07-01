@@ -59,6 +59,20 @@ class ChapterOneTests(TestCase):
             'a2b1c5a3'
         )
     
+    def test_problem7(self):
+        
+        matr = [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
+            [13, 14, 15, 16],
+        ]
+        self.ch1.problem7(matr)
+        
+        # TODO add additional cases
+        # TODO currently not passing test
+        # self.assertEqual()
+    
     def test_problem8(self):
         base_case1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
         base_case2 = [[5, 1], [1, 8]]

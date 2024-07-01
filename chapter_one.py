@@ -155,6 +155,71 @@ class ChapterOne:
             return compressed_str
         return string
     
+    def problem7(self, _m: List[List[int]]) -> List[List[int]]:
+        # Given an image represented by an NxN matrix, where each pixel in the
+        # image is 4 bytes, write a method to rotate the image by 90 degrees.
+        # Can you do this in place?
+        
+        # Complexity (in-place solution): O( n ^ 2 ) where n is the side length
+        # of the matrix.
+        
+        # TRIVIAL CASES
+        n = len(_m)
+        if n == 1 or n == 0:
+            return _m
+        if n == 2:  # TODO swap is backwards
+            _m[0][0], _m[0][1], _m[1][1], _m[1][0] = _m[0][1], _m[1][1], _m[1][0], _m[0][0]
+            return _m
+        
+        # EACH LAYER HAS INIT POINT AND SWAPS ON THAT LAYER
+        ini = {
+            't': [0, 0],
+            'r': [0, n - 1],
+            'b': [n - 1, n - 1],
+            'l': [n - 1, 0],
+        }
+        swap_offsets = [i for i in range(0, n-1)]
+        while len(swap_offsets) > 1:
+            
+            # GET LIST OF SWAPS PER SIDE
+            _sw = {  # sw for swaps
+                't': [[ini['t'][0], x] for x in swap_offsets],
+                'r': [[x, ini['r'][1]] for x in swap_offsets],
+                'b': [[ini['b'][0], ini['b'][1] - x] for x in swap_offsets],
+                'l': [[ini['l'][0] - x, ini['l'][1]] for x in swap_offsets],
+            }
+            
+            # FOUR-WAY INPLACE SWAPS
+            for i in range(len(swap_offsets)):
+                t = _m[_sw['t'][i][0]][_sw['t'][i][1]]
+                r = _m[_sw['r'][i][0]][_sw['r'][i][1]]
+                b = _m[_sw['b'][i][0]][_sw['b'][i][1]]
+                l = _m[_sw['l'][i][0]][_sw['l'][i][1]]
+                
+                # Over-optimizing here, could also use a single placeholder int
+                _m[_sw['l'][i][0]][_sw['l'][i][1]], \
+                    _m[_sw['b'][i][0]][_sw['b'][i][1]], \
+                    _m[_sw['r'][i][0]][_sw['r'][i][1]], \
+                    _m[_sw['t'][i][0]][_sw['t'][i][1]] = \
+                    t, r, b, l
+            
+            # update inits:
+            ini['t'][0] += 1
+            ini['t'][1] += 1
+            
+            ini['r'][0] += 1
+            ini['r'][1] -= 1
+            
+            ini['b'][0] -= 1
+            ini['b'][1] -= 1
+            
+            ini['l'][0] -= 1
+            ini['l'][1] += 1
+
+            # get next layer swaps
+            swap_offsets = swap_offsets[1:-1]
+        return _m
+    
     def problem8(self, matrix: List[List[int]]) -> List[List[int]]:
         # Write an algorithm such that if an element in an MxN matrix is 0,
         # its entire row and column are set to 0.
