@@ -1,3 +1,5 @@
+from typing import List
+
 from stack import Stack
 
 
@@ -48,6 +50,40 @@ class ChapterThree:
         # Complexity: pop() is O( 2n ) operation because stacks must be flipped
         # back after each pop
         pass
+    
+    def problem5(self, unsorted_stack: List[int]) -> List[int]:
+        # Write a program to sort a stack such that the smallest items are on the
+        # top. You can use an additional temporary stack, but you may not copy
+        # the elements into any other data structure (such as an array).
+        # The stack supports the following operations: push, pop, peek, and
+        # isEmpty.
+        
+        # Using a subset of python list operations as a "stack":
+        # push: list.append()
+        # pop: list.pop()
+        # peek: list[-1]
+        # isEmpty: if list
+        # Complexity: O( n^2 ) at worst case (every element goes through sort)
+        sorted_stack = []
+        sorted_stack.append(unsorted_stack.pop())
+        
+        while len(unsorted_stack) != 0:  # is_empty()
+            top_elem = unsorted_stack.pop()
+            
+            if top_elem <= sorted_stack[-1]:
+                sorted_stack.append(top_elem)
+            
+            else:  # top_elem > sort_stack
+                count = 0
+                while sorted_stack and top_elem > sorted_stack[-1]:  # peek()
+                    unsorted_stack.append(sorted_stack.pop())
+                    count += 1
+                
+                # insert top and refill with stored items
+                sorted_stack.append(top_elem)
+                for _ in range(count):  # refill
+                    sorted_stack.append(unsorted_stack.pop())
+        return sorted_stack
 
     def problem6(self):
         # An animal shelter, which holds only dogs and cats, operates on a
