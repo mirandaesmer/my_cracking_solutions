@@ -32,7 +32,7 @@ class ChapterTwo:
         # Implement an algorithm to find the kth to last element of a singly
         # linked list.
         
-        # Complexity: O( 2n ) at worst case
+        # Complexity: O( n ) at worst case
         if root is None or root.data is None:
             return None
         
