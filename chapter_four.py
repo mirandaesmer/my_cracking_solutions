@@ -10,6 +10,8 @@ class ChapterFour:
     def problem1(self, dg: DirectedGraph, a: GraphNode, b: GraphNode) -> bool:
         # Route Between Nodes: Given a directed graph, design an algorithm to
         # find out whether there is a route between two nodes.
+        
+        # Complexity: O( 2( V + E) ), since 2 BFS operations are performed
         a_to_b = dg.bfs(a, b.data)
         b_to_a = dg.bfs(b, a.data)
         
@@ -56,6 +58,8 @@ class ChapterFour:
         # of all the nodes at each depth (e.g., if you have a tree with depth
         # D, you'll have D linked lists.
         
+        # Complexity: O( 2N ) where N is the amount of nodes, one traversal and
+        # one append (to linked list) for each node.
         # Breadth-first traversal of the BST
         linked_list_by_level = []
         nodes_at_level = [root]
@@ -110,6 +114,7 @@ class ChapterFour:
         lh = self._get_max_depth(bt_root.left, 1)
         rh = self._get_max_depth(bt_root.right, 1)
         
+        # Complexity: O( N ) where N is the amount of nodes
         if max(rh, lh) - min(rh, lh) > 1:
             return False
         return True
@@ -117,6 +122,8 @@ class ChapterFour:
     def problem5(self, root: BinarySearchTreeNode) -> bool:
         # Implement a function to check if a binary tree is a binary search
         # tree.
+        
+        # Complexity: O( n + n ( log(n) ) ), could be improved upon
         nodes = []
         root.in_order_traverse(nodes)
         return nodes == sorted(nodes)
@@ -126,7 +133,8 @@ class ChapterFour:
         # of a given node in a binary search tree. You may assume that each
         # node has a link to its parent.
         
-        # in this case, only returning data
+        # Complexity: O ( 2n ) where is n the amount of nodes in the tree, could
+        # be improved by not performing a full traversal, same at worst case.
         in_order_data = []
         root.in_order_traverse(in_order_data)
         if not in_order_data:
@@ -148,8 +156,10 @@ class ChapterFour:
         # Design an algorithm and write code to find the first common ancestor
         # of two nodes in a binary tree. Avoid storing additional nodes in a
         # data structure. NOTE: This is not necessarily a binary search tree.
-        
         # NOTE: Does not avoid storing additional nodes
+        
+        # Complexity: O ( 2 (n + logn) ) where 2n corresponds to obtaining both
+        # paths each of logn (height of tree) length.
         root_to_a = root.get_path_to_node(root, node_a)
         root_to_b = root.get_path_to_node(root, node_b)
         
@@ -188,6 +198,10 @@ class ChapterFour:
         # T2 is a subtree of T1 if there exists a node n in T1 such that the
         # subtree of n is identical to T2. That is, if you cut off the tree at
         # node n, the two trees would be identical.
+        
+        # Complexity: O( N - M ) where is N is the amount of nodes in the larger
+        # tree and M is the amount of nodes of the smaller tree, could be
+        # improved by using bidirectional search.
         result = self._search_node(t1_root, t2_root)
         if result is None:
             return False
@@ -200,6 +214,10 @@ class ChapterFour:
         # equally likely to be chosen. Design and implement an algorithm for
         # getRandomNode, and explain how you would implement the rest of the
         # methods.
+        
+        # Complexity: insert find and delete are the same as base binary tree,
+        # get random node requires only obtaining the index of a linear from a
+        # randint() operation which is O( log n ) where n is the amount of nodes
         
         # NOTE: see random_binary_tree_node.py and
         # random_binary_tree_node_tests.py
