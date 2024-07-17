@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from linked_list_node import LinkedListNode
 
@@ -25,3 +25,46 @@ class ExtraProblems:
             
             valid_nodes = [n for n in valid_nodes if n is not None]
         return sorted_root
+
+    def _get_next_island(self, _grid) -> List[int]:
+        # returns empty list if none found
+        for i in range(len(_grid)):
+            for j in range(len(_grid[i])):
+                if _grid[i][j] == 1:
+                    return [i, j]
+        return []
+
+    def _fill_ones_rec(self, _grid, i, j) -> None:
+        vert_bound = len(_grid) - 1
+        horiz_bound = len(_grid[0]) - 1
+        
+        _grid[i][j] = 0
+        
+        if i != 0 and _grid[i - 1][j]:  # top
+            self._fill_ones_rec(_grid, i - 1, j)
+            
+        if i != vert_bound and _grid[i + 1][j]:  # bottom
+            self._fill_ones_rec(_grid, i + 1, j)
+        
+        if j != 0 and _grid[i][j - 1]:  # left
+            self._fill_ones_rec(_grid, i, j - 1)
+        
+        if j != horiz_bound and _grid[i][j + 1]:
+            self._fill_ones_rec(_grid, i, j + 1)
+    
+    def problem2(self, grid: List[List[int]]) -> int:
+        # Given an m x n 2D binary grid which represents a map of '1's
+        # (land) and '0's (water), return the number of islands. An island is
+        # surrounded by water and is formed by connecting adjacent lands
+        # horizontally or vertically. You may assume all four edges of the grid
+        # are all surrounded by water.
+        island_count = 0
+        island_coords = self._get_next_island(grid)
+        while island_coords:
+            # fill in islands in place
+            self._fill_ones_rec(grid, island_coords[0], island_coords[1])
+            island_count += 1
+            
+            # get new island
+            island_coords = self._get_next_island(grid)
+        return island_count

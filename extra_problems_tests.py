@@ -35,3 +35,19 @@ class ExtraProblemsTests(TestCase):
             result = result.next
             
         self.assertEqual(sorted_list, [1, 1, 2, 3, 4, 4, 5, 6])
+
+    def test_problem2(self):
+        grid_a = [  # 1
+          [1,1,1,1,0],
+          [1,1,0,1,0],
+          [1,1,0,0,0],
+          [0,0,0,0,0]
+        ]
+        grid_b = [  # 3
+          [1,1,0,0,0],
+          [1,1,0,0,0],
+          [0,0,1,0,0],
+          [0,0,0,1,1]
+        ]
+        self.assertEqual(self.ex.problem2(grid_a), 1)
+        self.assertEqual(self.ex.problem2(grid_b), 3)
