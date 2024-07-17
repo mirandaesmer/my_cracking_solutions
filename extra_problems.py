@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Dict
 
 from linked_list_node import LinkedListNode
 
@@ -26,7 +26,7 @@ class ExtraProblems:
             valid_nodes = [n for n in valid_nodes if n is not None]
         return sorted_root
 
-    def _get_next_island(self, _grid) -> List[int]:
+    def _get_next_island(self, _grid: List[List[int]]) -> List[int]:
         # returns empty list if none found
         for i in range(len(_grid)):
             for j in range(len(_grid[i])):
@@ -34,7 +34,7 @@ class ExtraProblems:
                     return [i, j]
         return []
 
-    def _fill_ones_rec(self, _grid, i, j) -> None:
+    def _fill_ones_rec(self, _grid: List[List[int]], i: int, j: int) -> None:
         vert_bound = len(_grid) - 1
         horiz_bound = len(_grid[0]) - 1
         
@@ -68,3 +68,18 @@ class ExtraProblems:
             # get new island
             island_coords = self._get_next_island(grid)
         return island_count
+
+    def _fib_memo(self, curr: int, n: int, memo: Dict[int, int]) -> int:
+        if curr in memo:
+            return memo[curr]
+        
+        new_res = memo[curr - 1] + memo[curr - 2]
+        memo[curr] = new_res
+        
+        if curr == n:
+            return new_res
+        return self._fib_memo(curr + 1, n, memo)
+        
+    def problem3(self, n: int) -> int:
+        # Return the nth fibonacci number
+        return self._fib_memo(3, n, {1: 0, 2: 1})

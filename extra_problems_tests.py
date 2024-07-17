@@ -51,3 +51,8 @@ class ExtraProblemsTests(TestCase):
         ]
         self.assertEqual(self.ex.problem2(grid_a), 1)
         self.assertEqual(self.ex.problem2(grid_b), 3)
+
+    def test_problem3(self):
+        self.assertEqual(self.ex.problem3(5), 3)
+        self.assertEqual(self.ex.problem3(10), 34)
+        self.assertEqual(self.ex.problem3(100), 218922995834555169026)
